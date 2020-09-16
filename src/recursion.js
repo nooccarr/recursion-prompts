@@ -7,23 +7,39 @@
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
 var factorial = function(n) {
-  // base case for 0 is 1
-  // base case for 1 is 1
+  // base case for n: if 0 return 1
+  // base case for n: if 1 return 1
   if (n < 0) {
     return null;
   } else if (n === 0 || n === 1) {
     return 1;
   }
-  // step 1: factorial(4) = 4 * 3 * 2 * 1;
-  // step 2: factorial(3) =     3 * 2 * 1;
-  // step 3: factorial(4) = 4 * factorial(3);
-  // step 4: factorial(n) = n * factorial(n - 1);
+  // factorial(4) = 4 * factorial(3);
+  // factorial(4) = 4 * 3 * 2 * 1;
+  // factorial(3) =     3 * 2 * 1;
+  // factorial(2) =         2 * 1;
+  // factorial(1) =             1; base case
+  // factorial(n) = n * factorial(n - 1);
   return n * factorial(n - 1);
 };
 
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
+  if (array.length === 0) {
+    return 0;
+  } else if (array.length === 1) {
+    return array[0];
+  }
+  // sum([10, 12, 9, 2, 4]) = 10 + sum(array.slice(1));
+  // sum([10, 12, 9, 2, 4]) = 10 + [12, 9, 2, 4];
+  // sum([12, 9, 2, 4])     = 12 +     [9, 2, 4];
+  // sum([9, 2, 4])         =  9 +        [2, 4];
+  // sum([2, 4])            =  2 +           [4];
+  // sum([4])               =                 4 ; base case
+  // sum(array)       = array[0] + sum(array.slice(1));
+  return array[0] + sum(array.slice(1));
+
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
