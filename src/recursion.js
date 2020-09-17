@@ -66,17 +66,18 @@ var arraySum = function(array) {
   }
 
   // var newArray = [];
+
   // for (var i = 0; i < array.length; i++) {
   //   if (Array.isArray(array[i])) {
-  //     while (Array.isArray(array[i])) {
-  //       arraySum(array[i]);
-  //     }
+  //     newArray.concat(arraySum(array[i]));
+
   //   } else {
   //     newArray.push(array[i]);
   //   }
   // }
+  // // return newArray;
   // return newArray.reduce(function(acc, val) {
-  //   return acc += val;
+  //   return acc + val;
   // });
 
 
@@ -147,6 +148,17 @@ var palindrome = function(string) {
 // modulo(17,5) // 2
 // modulo(22,6) // 4
 var modulo = function(x, y) {
+  if (y === 0) {
+    return NaN;
+  } else if (y < 0) {
+    return modulo(x, -y);
+  } else if (x < 0) {
+    return -(modulo(-x, y));
+  } else if (x < y) {
+    return x;
+  }
+
+  return modulo(x - y, y);
 };
 
 // 12. Write a function that multiplies two numbers without using the * operator or
@@ -269,6 +281,17 @@ var nestedEvenSum = function(obj) {
 // 30. Flatten an array containing nested arrays.
 // flatten([1,[2],[3,[[4]]],5]); // [1,2,3,4,5]
 var flatten = function(array) {
+  var result = [];
+
+  for (var i = 0; i < array.length; i++) {
+    if (Array.isArray(array[i])) {
+      result = result.concat(flatten(array[i]));
+    } else {
+      result.push(array[i]);
+    }
+  }
+
+  return result;
 };
 
 // 31. Given a string, return an object containing tallies of each letter.
