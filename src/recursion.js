@@ -40,7 +40,20 @@ var sum = function(array) {
   // sum([2, 4])            =  2 +           [4];
   // sum([4])               =                 4 ; base case
   // sum(array)       = array[0] + sum(array.slice(1));
-  return array[0] + sum(array.slice(1));
+
+  // // solution 1:
+  // return array[0] + sum(array.slice(1));
+
+  // // solution 2:
+  // return array[array.length - 1] + sum(array.slice(0, array.length - 1));
+
+  // // solution 3:
+  // var newArray = array.slice();
+  // return newArray.pop() + sum(newArray.slice());
+
+  // solution 4:
+  array = array.slice();
+  return array.shift() + sum(array.slice());
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
@@ -52,15 +65,19 @@ var arraySum = function(array) {
     return array[0];
   }
 
-  for (var i = 0; i < array.length; i++) {
-    if (Array.isArray(array[i])) {
-
-    } else {
-
-    }
-  }
-
-
+  // var newArray = [];
+  // for (var i = 0; i < array.length; i++) {
+  //   if (Array.isArray(array[i])) {
+  //     while (Array.isArray(array[i])) {
+  //       arraySum(array[i]);
+  //     }
+  //   } else {
+  //     newArray.push(array[i]);
+  //   }
+  // }
+  // return newArray.reduce(function(acc, val) {
+  //   return acc += val;
+  // });
 
 
 };
@@ -75,7 +92,7 @@ var isEven = function(n) {
 
   if (n > 0) {
     return isEven(n - 2);
-  } else {
+  } else if (n < 0) {
     return isEven(n + 2);
   }
 };
@@ -84,11 +101,16 @@ var isEven = function(n) {
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+  if (n === 0) {
+    return 0;
+  }
+
 };
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
+
 };
 
 // 7. Compute the exponent of a number.
@@ -104,10 +126,15 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+
 };
 
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
+  if (string.length === 0) {
+    return string;
+  }
+  return string[string.length - 1] + reverse(string.slice(0, string.length - 1));
 };
 
 // 10. Write a function that determines if a string is a palindrome.
