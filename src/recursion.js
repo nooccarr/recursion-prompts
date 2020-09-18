@@ -374,7 +374,6 @@ var rMap = function(array, callback) {
 // countKeysInObj(obj, 'r') // 1
 // countKeysInObj(obj, 'e') // 2
 var countKeysInObj = function(obj, key) {
-
   var count = 0;
 
   for (var k in obj) {
@@ -395,6 +394,19 @@ var countKeysInObj = function(obj, key) {
 // countValuesInObj(obj, 'r') // 2
 // countValuesInObj(obj, 'e') // 1
 var countValuesInObj = function(obj, value) {
+  var count = 0
+
+  for (var key in obj) {
+    if (obj[key] === value) {
+      count += 1
+    }
+
+    if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
+      count += countValuesInObj(obj[key], value);
+    }
+  }
+
+  return count;
 };
 
 // 24. Find all keys in an object (and nested objects) by a provided name and rename
