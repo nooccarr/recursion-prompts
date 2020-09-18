@@ -466,8 +466,6 @@ var nthFibo = function(n) {
 var capitalizeWords = function(array) {
   if (array.length === 0) {
     return [];
-  } else if (array.length === 1) {
-    return [array[0].toUpperCase()];
   }
 
   return [array.shift().toUpperCase()].concat(capitalizeWords(array.slice()));
@@ -478,8 +476,6 @@ var capitalizeWords = function(array) {
 var capitalizeFirst = function(array) {
   if (array.length === 0) {
     return [];
-  } else if (array.length === 1) {
-    return [array[0].toUppercase() + array.slice(1).toLowerCase()];
   }
   var firstElement = array.shift();
   return [firstElement[0].toUpperCase() + firstElement.slice(1).toLowerCase()].concat(capitalizeFirst(array.slice()));
@@ -495,6 +491,16 @@ var capitalizeFirst = function(array) {
 // };
 // nestedEvenSum(obj1); // 10
 var nestedEvenSum = function(obj) {
+  var sum = 0;
+  for (var key in obj) {
+    if (typeof obj[key] === 'number' && obj[key] % 2 === 0) {
+      sum += obj[key];
+    } else if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
+      sum += nestedEvenSum(obj[key]);
+    }
+  }
+
+  return sum;
 };
 
 // 30. Flatten an array containing nested arrays.
