@@ -95,8 +95,18 @@ var isEven = function(n) {
 var sumBelow = function(n) {
   if (n === 0) {
     return 0;
+  } else if (n === 1) {
+    return 0;
   }
 
+  if (n > 0) {
+    var sum = n - 1;
+    sum += sumBelow(n - 1);
+  } else if (n < 0) {
+    var sum = n + 1;
+    sum += sumBelow(n + 1);
+  }
+  return sum;
 };
 
 // 6. Get the integers within a range (x, y).
@@ -111,14 +121,13 @@ var range = function(x, y) {
   }
 
   if (x < y) {
-    var arr1 = [x + 1];
-    arr1 = arr1.concat(range(x + 1, y));
-    return arr1;
+    var arr = [x + 1];
+    arr = arr.concat(range(x + 1, y));
   } else if (x > y) {
-    var arr2 = [x - 1];
-    arr2 = arr2.concat(range(x - 1, y));
-    return arr2;
+    var arr = [x - 1];
+    arr = arr.concat(range(x - 1, y));
   }
+  return arr;
 };
 
 // 7. Compute the exponent of a number.
