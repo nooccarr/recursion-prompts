@@ -251,9 +251,20 @@ var divide = function(x, y) {
 // 14. Find the greatest common divisor (gcd) of two positive numbers. The GCD of two
 // integers is the greatest integer that divides both x and y with no remainder.
 // gcd(4,36); // 4
-// http://www.cse.wustl.edu/~kjg/cse131/Notes/Recursion/recursion.html
+// https://www.cse.wustl.edu/~cytron/101Pages/f08/Notes/Recursion/recursion.html
 // https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm
 var gcd = function(x, y) {
+  if (x <= 0 || y <= 0) {
+    return null;
+  }
+
+  if (x === y) {
+    return x;
+  } else if (x > y) {
+    return gcd(x - y, y);
+  } else if (x < y) {
+    return gcd(x, y - x);
+  }
 };
 
 // 15. Write a function that compares each character of two strings and returns true if
@@ -261,6 +272,7 @@ var gcd = function(x, y) {
 // compareStr('house', 'houses') // false
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
+
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
