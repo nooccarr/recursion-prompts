@@ -438,8 +438,8 @@ var fibonacci = function(n) {
     return [0, 1, 1];
   }
 
-  // return (fibonacci(n - 1) + fibonacci(n - 2));
-
+  var prevFib = fibonacci(n - 1);
+  return prevFib.concat(prevFib[prevFib.length - 1] + prevFib[prevFib.length - 2]);
 
 };
 
