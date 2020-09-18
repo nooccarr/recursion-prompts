@@ -412,6 +412,16 @@ var countValuesInObj = function(obj, value) {
 // 24. Find all keys in an object (and nested objects) by a provided name and rename
 // them to a provided new name while preserving the value stored at that key.
 var replaceKeysInObj = function(obj, oldKey, newKey) {
+  // for (var key in obj) {
+  //   if (key === oldKey) {
+  //     obj[newKey] = obj[oldKey];
+  //     // delete obj[oldKey];
+  //   }
+
+  //   if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
+  //     obj[key] = replaceKeysInObj(obj[key], oldKey, newKey);
+  //   }
+  // }
 };
 
 // 25. Get the first n Fibonacci numbers. In the Fibonacci sequence, each subsequent
@@ -439,6 +449,15 @@ var fibonacci = function(n) {
 // nthFibo(7); // 13
 // nthFibo(3); // 2
 var nthFibo = function(n) {
+  if (n < 0) {
+    return null;
+  } else if (n === 0 || n === 1) {
+    return n;
+  } else if (n === 2) {
+    return 1;
+  }
+
+  return nthFibo(n - 2) + nthFibo(n - 1);
 };
 
 // 27. Given an array of words, return a new array containing each word capitalized.
