@@ -374,10 +374,20 @@ var rMap = function(array, callback) {
 // countKeysInObj(obj, 'r') // 1
 // countKeysInObj(obj, 'e') // 2
 var countKeysInObj = function(obj, key) {
-  // if (Object.keys(obj).length === 0) {
-  //   return 0;
-  // }
 
+  var count = 0;
+
+  for (var k in obj) {
+    if (k === key) {
+      count += 1;
+    }
+    if (typeof obj[k] === 'object' && !Array.isArray(obj[k])) {
+      count += countKeysInObj(obj[k], key);
+    }
+  }
+
+
+  return count;
 };
 
 // 23. Write a function that counts the number of times a value occurs in an object.
@@ -483,6 +493,19 @@ var letterTally = function(str, obj) {
 // compress([1,2,2,3,4,4,5,5,5]) // [1,2,3,4,5]
 // compress([1,2,2,3,4,4,2,5,5,5,4,4]) // [1,2,3,4,2,5,4]
 var compress = function(list) {
+  if (list.length === 0) {
+    return [];
+  } else if (list.length === 1) {
+    return [list[0]];
+  }
+
+  // list = list.slice();
+  // if (list[0] === list[1]) {
+  //   return [list.shift()].concat(compress(list.slice(1)));
+  // } else {
+
+  //   return [list.shift()].concat(compress(list.slice()));
+  // }
 };
 
 // 33. Augment every element in a list with a new value where each element is an array
