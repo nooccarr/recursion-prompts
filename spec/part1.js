@@ -723,7 +723,7 @@
         expect(multiply(2, 1)).to.equal(1 * 2);
         expect(multiply(5, 17)).to.equal(5 * 17);
         expect(multiply(32, 0)).to.equal(0 * 32);
-        // expect(multiply(453, 78)).to.equal(78 * 453);
+        expect(multiply(453, 78)).to.equal(78 * 453);
       });
 
       it('should use recursion by calling self', function() {
@@ -832,11 +832,11 @@
         expect(gcd(7, -36)).to.be.null;
         expect(gcd(-10, -58)).to.be.null;
         expect(gcd(-92, -5)).to.be.null;
-        // expect(gcd(0, 0)).to.be.null;
-        // expect(gcd(0, 5)).to.be.null;
-        // expect(gcd(5, 0)).to.be.null;
-        // expect(gcd(-5, 0)).to.be.null;
-        // expect(gcd(0, -5)).to.be.null;
+        expect(gcd(0, 0)).to.be.null;
+        expect(gcd(0, 5)).to.be.null;
+        expect(gcd(5, 0)).to.be.null;
+        expect(gcd(-5, 0)).to.be.null;
+        expect(gcd(0, -5)).to.be.null;
       });
 
       it('should use recursion by calling self', function() {
