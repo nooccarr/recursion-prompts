@@ -102,7 +102,23 @@ var sumBelow = function(n) {
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
+  if (x === y) {
+    return [];
+  } else if (x + 1 === y) {
+    return [];
+  } else if (x - 1 === y) {
+    return [];
+  }
 
+  if (x < y) {
+    var arr1 = [x + 1];
+    arr1 = arr1.concat(range(x + 1, y));
+    return arr1;
+  } else if (x > y) {
+    var arr2 = [x - 1];
+    arr2 = arr2.concat(range(x - 1, y));
+    return arr2;
+  }
 };
 
 // 7. Compute the exponent of a number.
@@ -131,7 +147,12 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
-
+  if (n < 1) {
+    return false;
+  } else if (n === 1) {
+    return true;
+  }
+  return powerOfTwo(n / 2);
 };
 
 // 9. Write a function that reverses a string.
