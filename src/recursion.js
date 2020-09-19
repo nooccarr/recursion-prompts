@@ -592,6 +592,26 @@ var alternateSign = function(array) {
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
 var numToText = function(str) {
+  if (str.length === 0) {
+    return '';
+  }
+
+  var nums = {
+    1: 'one',
+    2: 'two',
+    3: 'three',
+    4: 'four',
+    5: 'five',
+    6: 'six',
+    7: 'seven',
+    8: 'eight',
+    9: 'nine'
+  };
+  if (nums[str[0]] === undefined) {
+    return str[0] + numToText(str.slice(1));
+  } else {
+    return nums[str[0]] + numToText(str.slice(1));
+  }
 };
 
 
@@ -599,47 +619,31 @@ var numToText = function(str) {
 
 // 37. Return the number of times a tag occurs in the DOM.
 var tagCount = function(tag, node) {
+  // recursive solution:
 
-  // iterative solution 1:
-  node = document.getElementsByTagName(tag);
+  // iterative solution:
+  node = document.body;
 
   function walkTheDOM(node, func) {
     func(node);
-    node = node.firstChild;
+    node = node.firstElementChild;
     while (node) {
       walkTheDOM(node, func);
-      node = node.nextSibling;
+      node = node.nextElementSibling;
     }
   }
 
   var counter = 0;
 
   function addCount(currentNode) {
-    for (var i = 0; i < currentNode.length; i++) {
-      if (currentNode[i].tagName.toLowerCase() === tag) {
-        counter += 1;
-      }
+    if (currentNode.tagName.toLowerCase() === tag) {
+      counter += 1;
     }
   }
-
 
   walkTheDOM(node, addCount);
 
   return counter;
-
-
-  // // iterative solution 2:
-  // if (document.all.length === 0) {
-  //   return 0;
-  // }
-
-  // let count = 0;
-  // for (var i = 0; i < document.all.length; i++) {
-  //   if (document.all[i].tagName.toLowerCase() === tag) {
-  //     count += 1;
-  //   }
-  // }
-  // return count;
 };
 
 // 38. Write a function for binary search.
