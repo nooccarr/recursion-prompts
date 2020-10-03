@@ -622,7 +622,9 @@ var tagCount = function(tag, node) {
   // recursive solution:
 
   // iterative solution:
-  node = document.body;
+  if (node === undefined) {
+    node = document.body;
+  }
 
   function walkTheDOM(node, func) {
     func(node);
