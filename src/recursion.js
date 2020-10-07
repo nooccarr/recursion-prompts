@@ -619,31 +619,16 @@ var numToText = function(str) {
 
 // 37. Return the number of times a tag occurs in the DOM.
 var tagCount = function(tag, node) {
-  // recursive solution:
-
-  // iterative solution:
-  if (node === undefined) {
-    node = document.body;
-  }
-
-  function walkTheDOM(node, func) {
-    func(node);
-    node = node.firstElementChild;
-    while (node) {
-      walkTheDOM(node, func);
-      node = node.nextElementSibling;
-    }
-  }
-
   var counter = 0;
+  node = node || document.body;
 
-  function addCount(currentNode) {
-    if (currentNode.tagName.toLowerCase() === tag) {
-      counter += 1;
-    }
+  if (node.tagName.toLowerCase() === tag) {
+    counter++;
   }
-
-  walkTheDOM(node, addCount);
+  for (var i = 0; i < node.children.length; i++) {
+    var childCounts = tagCount(tag, node.children[i]);
+      counter += childCounts;
+  }
 
   return counter;
 };
